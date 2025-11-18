@@ -1,0 +1,271 @@
+{
+    "access_control": {
+        "assignments": {
+            "u1": [
+                "p-admin"
+            ],
+            "u2": [
+                "p-read-1"
+            ]
+        },
+        "policies": [
+            {
+                "actions": [
+                    "read",
+                    "list"
+                ],
+                "conditions": {
+                    "ip": [
+                        "196.0.0.0/8"
+                    ],
+                    "time": {
+                        "end": "18:00",
+                        "start": "08:00"
+                    }
+                },
+                "effect": "allow",
+                "policy_id": "p-read-1",
+                "resource": "dataset.samples"
+            },
+            {
+                "actions": [
+                    "*"
+                ],
+                "effect": "allow",
+                "meta": {
+                    "created_by": "system"
+                },
+                "policy_id": "p-admin",
+                "resource": "*"
+            }
+        ]
+    },
+    "binary": {
+        "model_blob_hex": "4f6b2a9b..."
+    },
+    "dataset": {
+        "calibration": {
+            "matrix": [
+                [
+                    1.0,
+                    0.0,
+                    -0.01
+                ],
+                [
+                    0.0,
+                    0.98,
+                    0.02
+                ],
+                [
+                    0.0,
+                    0.0,
+                    1.0
+                ]
+            ],
+            "versioned": {
+                "v1": {
+                    "applied_by": "engine"
+                },
+                "v2": {
+                    "applied_by": "admin"
+                }
+            }
+        },
+        "samples": [
+            {
+                "sensor_id": "S01",
+                "timestamp": "2024-06-01T12:00:00Z",
+                "values": [
+                    0.12,
+                    0.15
+                ]
+            },
+            {
+                "sensor_id": "S01",
+                "timestamp": "2024-06-01T12:01:00Z",
+                "values": [
+                    0.11,
+                    0.14
+                ]
+            }
+        ],
+        "schema": {
+            "fields": [
+                {
+                    "name": "timestamp",
+                    "nullable": false,
+                    "type": "datetime"
+                },
+                {
+                    "name": "sensor_id",
+                    "nullable": false,
+                    "type": "string"
+                },
+                {
+                    "items": "float",
+                    "name": "values",
+                    "nullable": true,
+                    "type": "array"
+                }
+            ],
+            "primary_key": [
+                "timestamp",
+                "sensor_id"
+            ]
+        }
+    },
+    "external": {
+        "docs": [
+            {
+                "link": "https://docs.example/design",
+                "title": "Design"
+            }
+        ],
+        "git": {
+            "branch": "main",
+            "repo": "https://github.com/techspark/engine"
+        }
+    },
+    "jobs": {
+        "history": {
+            "j-000": {
+                "duration_s": 534.2,
+                "metrics": {
+                    "acc": 0.913
+                },
+                "status": "completed"
+            }
+        },
+        "queue": [
+            {
+                "job_id": "j-001",
+                "owner": "u2",
+                "params": {
+                    "epochs": 10,
+                    "lr": 0.001
+                },
+                "type": "train"
+            },
+            {
+                "job_id": "j-002",
+                "owner": "u3",
+                "params": {
+                    "batch": 64
+                },
+                "type": "eval"
+            }
+        ]
+    },
+    "meta": {
+        "app": "TechSpark Engine",
+        "created_at": "11:12",
+        "owner": {
+            "contacts": {
+                "email": "philip@example.com",
+                "phones": [
+                    "+2347012345678",
+                    "+2348098765432"
+                ]
+            },
+            "id": 35070313,
+            "name": "Odulaja Philip"
+        },
+        "version": "3.7.1"
+    },
+    "metrics": {
+        "aggregates": {
+            "daily": {
+                "avg_mem": 0.42,
+                "max_cpu": 0.98
+            }
+        },
+        "recent": [
+            {
+                "name": "cpu",
+                "value": 0.24
+            },
+            {
+                "name": "mem",
+                "value": 0.512
+            }
+        ]
+    },
+    "notes": [
+        [
+            "todo",
+            {
+                "priority": "high",
+                "task": "add export"
+            }
+        ],
+        [
+            "done",
+            {
+                "completed_at": "2024-06-01T13:00:00Z",
+                "task": "init pipeline"
+            }
+        ]
+    ],
+    "tenants": {
+        "default": {
+            "features": [
+                "analytics",
+                "realtime-stream",
+                "access-control"
+            ],
+            "id": "tn-000",
+            "limits": {
+                "projects": 10,
+                "storage_gb": 50
+            }
+        },
+        "partners": [
+            {
+                "id": "tn-101",
+                "integration": {
+                    "oauth": {
+                        "client_id": "abc",
+                        "scopes": [
+                            "read",
+                            "write"
+                        ]
+                    },
+                    "webhooks": [
+                        {
+                            "active": true,
+                            "retries": 3,
+                            "url": "https://alpha.example/hook"
+                        }
+                    ]
+                },
+                "name": "Alpha Labs",
+                "roles": {
+                    "admins": [
+                        {
+                            "since": "2023-06-12",
+                            "uid": "u1"
+                        }
+                    ],
+                    "developers": [
+                        {
+                            "languages": [
+                                "python",
+                                "js"
+                            ],
+                            "uid": "u2"
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "tn-102",
+                "name": "Beta Corp",
+                "notes": null,
+                "roles": {
+                    "admins": [],
+                    "developers": []
+                }
+            }
+        ]
+    }
+}
