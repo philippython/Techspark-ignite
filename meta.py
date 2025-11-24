@@ -91,13 +91,18 @@ def game():
     else:
         print("You won!! \nYou guessed right")
 
-game()
+# game()
 
 # first class is a function that can be assigned to a variable 
 # higher order function is a fuction that takes another function as its paramter
+def discount(price, discount_percentage):
+    discount_price = price - ( discount_percentage / 100 * price )
+    return discount_price
 
+def bill(price, discount_percentage, cust_name: str, discount_func):
+    return f"{cust_name} final bill is ${discount_func(price, discount_percentage)}"
 
-
+print(bill(450, 2, "Philip", discount))
 
 
 
